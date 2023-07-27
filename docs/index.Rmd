@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This set of functions allows you to do dlnm parameter sweep. Testing many different iterations of DLNM options quickly and efficiently.
+This set of functions allows you to do dlnm parameter sweep. Testing many different iterations of DLNM options quickly and efficiently. Github page is [here](https://github.com/cmilando/dlnm-sweep)
 
 ## Current method of doing DLNM
 
@@ -59,10 +59,9 @@ o
 But what if you wanted to test other spline options? Well now you can:
 
 # DLNM Sweep
-DLNM Sweep uses a custom function called `make_cb_list` to expand crossbasis options:
+DLNM Sweep uses a custom function called [`make_cb_list`](https://github.com/cmilando/dlnm-sweep/blob/main/docs/make_cb_list.R) to expand crossbasis options:
 
 ```{r echo=F, message=F}
-source('expand_arglist.R')
 source('make_cb_list.R')
 ```
 
