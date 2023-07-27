@@ -358,7 +358,8 @@ display: none;
 
 
 <p>This set of functions allows you to do dlnm parameter sweep. Testing
-many different iterations of DLNM options quickly and efficiently.</p>
+many different iterations of DLNM options quickly and efficiently.
+Github page is <a href="https://github.com/cmilando/dlnm-sweep">here</a></p>
 <div id="current-method-of-doing-dlnm" class="section level2">
 <h2>Current method of doing DLNM</h2>
 <p>From Gasparrini 2014:</p>
@@ -404,8 +405,8 @@ can:</p>
 </div>
 <div id="dlnm-sweep" class="section level1">
 <h1>DLNM Sweep</h1>
-<p>DLNM Sweep uses a custom function called <code>make_cb_list</code> to
-expand crossbasis options:</p>
+<p>DLNM Sweep uses a custom function called <a href="https://github.com/cmilando/dlnm-sweep/blob/main/docs/make_cb_list.R"><code>make_cb_list</code></a>
+to expand crossbasis options:</p>
 <pre class="r"><code>cb2 &lt;- make_cb_list(x = lndn,
                     var_list = c(&#39;tmean&#39;), 
                     argvar_list = list(set1 = list(fun=&quot;bs&quot;, degree = 2, knots = list(vk))) ,
