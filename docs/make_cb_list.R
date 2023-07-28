@@ -23,10 +23,10 @@ make_cb_list <- function(x, var_list, argvar_list, lag_list, arglag_list) {
   # --- var ---
   stopifnot(typeof(var_list) == 'character')
   stopifnot(all(var_list %in% colnames(x)))
-  stopifnot(all(sapply(var_list, function(js) is.numeric(x[,js]))))
+  stopifnot(all(sapply(var_list, function(js) is.numeric(unlist(x[,js])))))
   var_index <- 1:length(var_list)
   var_name <- var_list
-  var_list <- lapply(var_list, function(s) x[, s]) 
+  var_list <- lapply(var_list, function(s) unlist(x[, s])) 
   
   # --- lag ---
   stopifnot(is.numeric(lag_list))

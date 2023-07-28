@@ -362,7 +362,8 @@ many different iterations of DLNM options quickly and efficiently.
 Github page is <a href="https://github.com/cmilando/dlnm-sweep">here</a></p>
 <div id="current-method-of-doing-dlnm" class="section level2">
 <h2>Current method of doing DLNM</h2>
-<p>From Gasparrini 2014:</p>
+<p>From <a href="https://github.com/gasparrini/2014_gasparrini_BMCmrm_Rcodedata/blob/master/01.runmodel.R">Gasparrini
+2014</a>:</p>
 <pre class="r"><code>library(dlnm) ; library(splines) ; library(foreign) ; library(tsModel)
 
 # LOAD THE DATA
@@ -429,8 +430,8 @@ for(var in var_list) {
   # make var knots that vary by var
   vk2 = equalknots(lndn[, var], fun=&quot;bs&quot;, degree = 2, df = 4)
   vk3 = equalknots(lndn[, var], fun=&quot;ns&quot;, df = 4)
-  k50 = quantile(lndn[, var], probs = .5)
-  k10 = quantile(lndn[, var], probs = c(1:9)/10)
+  k50 = quantile(lndn[, var], probs = .5, na.rm = T)
+  k10 = quantile(lndn[, var], probs = c(1:9)/10, na.rm = T)
   
   cb_var = make_cb_list(x = lndn,
                          var_list = var, 
@@ -489,8 +490,8 @@ parallel:</p>
     p(message = sprintf(&quot;%s&quot;, attr(cb, &quot;summary_str&quot;)))
     # ********
     # get prediction and centering values
-    perc &lt;- quantile(lndn[, attr(cb, &quot;var_name&quot;)],c(0.99))
-    cen  &lt;- quantile(lndn[, attr(cb, &quot;var_name&quot;)],c(0.94)) # ~ 20c for Tmin
+    perc &lt;- quantile(lndn[, attr(cb, &quot;var_name&quot;)],c(0.99), na.rm = T)
+    cen  &lt;- quantile(lndn[, attr(cb, &quot;var_name&quot;)],c(0.94), na.rm = T) # ~ 20c for Tmax
     pred &lt;- crosspred(cb, m, at=perc, bylag=0.2, cen=cen)
     # ********
     data.frame(var_name = attr(cb, &quot;var_name&quot;), 

@@ -13,7 +13,7 @@ This set of functions allows you to do dlnm parameter sweep. Testing many differ
 
 ## Current method of doing DLNM
 
-From Gasparrini 2014:
+From [Gasparrini 2014](https://github.com/gasparrini/2014_gasparrini_BMCmrm_Rcodedata/blob/master/01.runmodel.R):
 
 ```{r DLNM_vanilla, message=F}
 library(dlnm) ; library(splines) ; library(foreign) ; library(tsModel)
@@ -92,8 +92,8 @@ for(var in var_list) {
   # make var knots that vary by var
   vk2 = equalknots(lndn[, var], fun="bs", degree = 2, df = 4)
   vk3 = equalknots(lndn[, var], fun="ns", df = 4)
-  k50 = quantile(lndn[, var], probs = .5)
-  k10 = quantile(lndn[, var], probs = c(1:9)/10)
+  k50 = quantile(lndn[, var], probs = .5, na.rm = T)
+  k10 = quantile(lndn[, var], probs = c(1:9)/10, na.rm = T)
   
   cb_var = make_cb_list(x = lndn,
                          var_list = var, 
@@ -157,8 +157,8 @@ get_pred <- function(cb_list, model_list) {
     p(message = sprintf("%s", attr(cb, "summary_str")))
     # ********
     # get prediction and centering values
-    perc <- quantile(lndn[, attr(cb, "var_name")],c(0.99))
-    cen  <- quantile(lndn[, attr(cb, "var_name")],c(0.94)) # ~ 20c for Tmin
+    perc <- quantile(lndn[, attr(cb, "var_name")],c(0.99), na.rm = T)
+    cen  <- quantile(lndn[, attr(cb, "var_name")],c(0.94), na.rm = T) # ~ 20c for Tmax
     pred <- crosspred(cb, m, at=perc, bylag=0.2, cen=cen)
     # ********
     data.frame(var_name = attr(cb, "var_name"), 
